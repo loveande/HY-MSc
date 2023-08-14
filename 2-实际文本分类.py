@@ -5,13 +5,13 @@ from transformers import AutoTokenizer, AutoModel
 import numpy as np
 
 def cosine_similarity(vector, matrix):
-    # 计算向量的范数
+
     vector_norm = np.linalg.norm(vector)
-    # 计算矩阵每个样本的范数
+
     matrix_norm = np.linalg.norm(matrix, axis=1)
-    # 计算向量和矩阵每个样本的内积
+
     dot_product = np.dot(matrix, vector)
-    # 计算余弦相似度
+
     similarity = dot_product / (matrix_norm * vector_norm)
     return similarity
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     sen_embs = pickle.load(open('sen_embs.pkl','rb'))
     label2int,labels = pickle.load(open('label2int.pkl','rb'))
     
-    word = input("请输入一句话(输入0结束):")
+    word = input("input a sentence:")
     
     while word != '0':
         
@@ -48,8 +48,8 @@ if __name__ == '__main__':
         # 找到最相似的节点
         sim_node = similarity.argsort()[-1]
         
-        print('识别的情绪为：'+labels[sim_node])
+        print('Identify the emotions as ：'+labels[sim_node])
         
-        word = input("请输入一句话(输入0结束):")
+        word = input("input a sentence:")
     print('=======System Out========')
         
